@@ -65,7 +65,7 @@ class DiagramFactory {
         SPRINGS(LayoutHandler.SlotGroupKeys.SPRINGS, OrePrefixes.spring, OrePrefixes.springSmall),
         GEARS(LayoutHandler.SlotGroupKeys.GEARS, OrePrefixes.gearGt, OrePrefixes.gearGtSmall),
         ROTORS(LayoutHandler.SlotKeys.ROTOR, OrePrefixes.rotor),
-        CASING(LayoutHandler.SlotKeys.CASING, OrePrefixes.itemCasing),
+//        CASING(LayoutHandler.SlotKeys.CASING, OrePrefixes.itemCasing),
         BARS(LayoutHandler.SlotKeys.BARS, OrePrefixes.bars),
         FRAME_BOX(LayoutHandler.SlotKeys.FRAME_BOX, OrePrefixes.frameGt),
 
@@ -73,9 +73,9 @@ class DiagramFactory {
                 OrePrefixes.wireGt01, OrePrefixes.wireGt02, OrePrefixes.wireGt04,
                 OrePrefixes.wireGt08, OrePrefixes.wireGt12, OrePrefixes.wireGt16),
         FINE_WIRE(LayoutHandler.SlotKeys.FINE_WIRE, OrePrefixes.wireFine),
-        CABLES(LayoutHandler.SlotGroupKeys.CABLES,
-                OrePrefixes.cableGt01, OrePrefixes.cableGt02, OrePrefixes.cableGt04,
-                OrePrefixes.cableGt08, OrePrefixes.cableGt12, OrePrefixes.cableGt16),
+//        CABLES(LayoutHandler.SlotGroupKeys.CABLES,
+//                OrePrefixes.cableGt01, OrePrefixes.cableGt02, OrePrefixes.cableGt04,
+//                OrePrefixes.cableGt08, OrePrefixes.cableGt12, OrePrefixes.cableGt16),
 
         PIPES(LayoutHandler.SlotGroupKeys.PIPES,
                 OrePrefixes.pipeTiny, OrePrefixes.pipeSmall, OrePrefixes.pipeMedium,
@@ -147,31 +147,31 @@ class DiagramFactory {
                 fluidsSlotBuilder, material.getPlasma(1000),
                 Lang.GREGTECH_5_MATERIAL_PARTS.trans("fluidtypeplasma"));
 
-        Diagram.Builder.SlotGroupAutoSubBuilder hydroCrackedFluidsSlotBuilder =
-                diagramBuilder.autoInsertIntoSlotGroup(
-                        LayoutHandler.SlotGroupKeys.HYDRO_CRACKED_FLUIDS);
-        insertFluidIntoSlot(
-                hydroCrackedFluidsSlotBuilder, material.getLightlyHydroCracked(1000),
-                Lang.GREGTECH_5_MATERIAL_PARTS.trans("fluidtypelightlyhydrocracked"));
-        insertFluidIntoSlot(
-                hydroCrackedFluidsSlotBuilder, material.getModeratelyHydroCracked(1000),
-                Lang.GREGTECH_5_MATERIAL_PARTS.trans("fluidtypemoderatelyhydrocracked"));
-        insertFluidIntoSlot(
-                hydroCrackedFluidsSlotBuilder, material.getSeverelyHydroCracked(1000),
-                Lang.GREGTECH_5_MATERIAL_PARTS.trans("fluidtypeseverelyhydrocracked"));
+//        Diagram.Builder.SlotGroupAutoSubBuilder hydroCrackedFluidsSlotBuilder =
+//                diagramBuilder.autoInsertIntoSlotGroup(
+//                        LayoutHandler.SlotGroupKeys.HYDRO_CRACKED_FLUIDS);
+//        insertFluidIntoSlot(
+//                hydroCrackedFluidsSlotBuilder, material.getLightlyHydroCracked(1000),
+//                Lang.GREGTECH_5_MATERIAL_PARTS.trans("fluidtypelightlyhydrocracked"));
+//        insertFluidIntoSlot(
+//                hydroCrackedFluidsSlotBuilder, material.getModeratelyHydroCracked(1000),
+//                Lang.GREGTECH_5_MATERIAL_PARTS.trans("fluidtypemoderatelyhydrocracked"));
+//        insertFluidIntoSlot(
+//                hydroCrackedFluidsSlotBuilder, material.getSeverelyHydroCracked(1000),
+//                Lang.GREGTECH_5_MATERIAL_PARTS.trans("fluidtypeseverelyhydrocracked"));
 
-        Diagram.Builder.SlotGroupAutoSubBuilder steamCrackedFluidsSlotBuilder =
-                diagramBuilder.autoInsertIntoSlotGroup(
-                        LayoutHandler.SlotGroupKeys.STEAM_CRACKED_FLUIDS);
-        insertFluidIntoSlot(
-                steamCrackedFluidsSlotBuilder, material.getLightlySteamCracked(1000),
-                Lang.GREGTECH_5_MATERIAL_PARTS.trans("fluidtypelightlysteamcracked"));
-        insertFluidIntoSlot(
-                steamCrackedFluidsSlotBuilder, material.getModeratelySteamCracked(1000),
-                Lang.GREGTECH_5_MATERIAL_PARTS.trans("fluidtypemoderatelysteamcracked"));
-        insertFluidIntoSlot(
-                steamCrackedFluidsSlotBuilder, material.getSeverelySteamCracked(1000),
-                Lang.GREGTECH_5_MATERIAL_PARTS.trans("fluidtypeseverelysteamcracked"));
+//        Diagram.Builder.SlotGroupAutoSubBuilder steamCrackedFluidsSlotBuilder =
+//                diagramBuilder.autoInsertIntoSlotGroup(
+//                        LayoutHandler.SlotGroupKeys.STEAM_CRACKED_FLUIDS);
+//        insertFluidIntoSlot(
+//                steamCrackedFluidsSlotBuilder, material.getLightlySteamCracked(1000),
+//                Lang.GREGTECH_5_MATERIAL_PARTS.trans("fluidtypelightlysteamcracked"));
+//        insertFluidIntoSlot(
+//                steamCrackedFluidsSlotBuilder, material.getModeratelySteamCracked(1000),
+//                Lang.GREGTECH_5_MATERIAL_PARTS.trans("fluidtypemoderatelysteamcracked"));
+//        insertFluidIntoSlot(
+//                steamCrackedFluidsSlotBuilder, material.getSeverelySteamCracked(1000),
+//                Lang.GREGTECH_5_MATERIAL_PARTS.trans("fluidtypeseverelysteamcracked"));
 
         Arrays.stream(MaterialPart.values())
                 .forEach(part -> part.insertIntoSlot(diagramBuilder, material));

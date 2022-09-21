@@ -3,6 +3,7 @@ package com.github.dcysteine.neicustomdiagram.generators.gregtech5.oreprocessing
 import com.github.dcysteine.neicustomdiagram.api.diagram.component.DisplayComponent;
 import com.github.dcysteine.neicustomdiagram.api.diagram.component.ItemComponent;
 import com.github.dcysteine.neicustomdiagram.main.Logger;
+import com.github.dcysteine.neicustomdiagram.util.GT_OreDictUnificator_WitchGetNoCopy;
 import com.github.dcysteine.neicustomdiagram.util.gregtech5.GregTechOreDictUtil;
 import com.github.dcysteine.neicustomdiagram.util.gregtech5.GregTechRecipeUtil;
 import com.google.common.collect.ImmutableList;
@@ -147,7 +148,7 @@ class RecipeHandler {
                     }
 
                     ItemComponent itemComponent =
-                            ItemComponent.create(GT_OreDictUnificator.get_nocopy(itemStack));
+                            ItemComponent.create(GT_OreDictUnificator_WitchGetNoCopy.get_nocopy(itemStack));
                     multimap.put(itemComponent, outputs);
 
                     chemicalBathFluidOptional.ifPresent(
