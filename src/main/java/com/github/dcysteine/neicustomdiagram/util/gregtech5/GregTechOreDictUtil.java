@@ -2,7 +2,6 @@ package com.github.dcysteine.neicustomdiagram.util.gregtech5;
 
 import com.github.dcysteine.neicustomdiagram.api.diagram.component.Component;
 import com.github.dcysteine.neicustomdiagram.api.diagram.component.ItemComponent;
-import com.github.dcysteine.neicustomdiagram.util.GT_OreDictUnificator_WitchGetNoCopy;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
@@ -43,7 +42,7 @@ public final class GregTechOreDictUtil {
             return component;
         }
 
-        return ItemComponent.create(GT_OreDictUnificator_WitchGetNoCopy.get_nocopy((ItemStack) component.stack()));
+        return ItemComponent.create(GT_OreDictUnificator.get_nocopy((ItemStack) component.stack()));
     }
 
     /** Returns a list of everything that unifies into {@code component}. */

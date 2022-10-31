@@ -5,7 +5,6 @@ import com.github.dcysteine.neicustomdiagram.api.diagram.component.DisplayCompon
 import com.github.dcysteine.neicustomdiagram.api.diagram.component.FluidComponent;
 import com.github.dcysteine.neicustomdiagram.api.diagram.component.ItemComponent;
 import com.github.dcysteine.neicustomdiagram.main.Logger;
-import com.github.dcysteine.neicustomdiagram.util.GT_OreDictUnificator_WitchGetNoCopy;
 import com.github.dcysteine.neicustomdiagram.util.gregtech5.GregTechOreDictUtil;
 import com.github.dcysteine.neicustomdiagram.util.gregtech5.GregTechRecipeUtil;
 import com.google.auto.value.AutoValue;
@@ -163,9 +162,6 @@ class RecipeHandler {
         DISTILLATION_TOWER(
                 GT_Recipe.GT_Recipe_Map.sDistillationRecipes,
                 ItemList.Distillation_Tower, "distillationtowerlabel"),
-//        OIL_CRACKER(
-//                GT_Recipe.GT_Recipe_Map.sCrackingRecipes,
-//                ItemList.OilCracker, "oilcrackerlabel"),
         PYROLYSE_OVEN(
                 GT_Recipe.GT_Recipe_Map.sPyrolyseRecipes,
                 ItemList.PyrolyseOven, "pyrolyseovenlabel"),
@@ -222,7 +218,7 @@ class RecipeHandler {
                 if (itemStack == null) {
                     continue;
                 }
-                ItemStack unified = GT_OreDictUnificator_WitchGetNoCopy.get_nocopy(itemStack);
+                ItemStack unified = GT_OreDictUnificator.get_nocopy(itemStack);
                 inputs.merge(
                         ItemComponent.createWithNbt(unified), itemStack.stackSize, Integer::sum);
             }
@@ -239,7 +235,7 @@ class RecipeHandler {
                 if (itemStack == null) {
                     continue;
                 }
-                ItemStack unified = GT_OreDictUnificator_WitchGetNoCopy.get_nocopy(itemStack);
+                ItemStack unified = GT_OreDictUnificator.get_nocopy(itemStack);
                 outputs.merge(
                         ItemComponent.createWithNbt(unified), itemStack.stackSize, Integer::sum);
             }

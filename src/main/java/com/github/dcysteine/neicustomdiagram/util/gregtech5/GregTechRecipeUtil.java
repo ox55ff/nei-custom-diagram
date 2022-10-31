@@ -7,7 +7,6 @@ import com.github.dcysteine.neicustomdiagram.api.diagram.component.FluidComponen
 import com.github.dcysteine.neicustomdiagram.api.diagram.component.ItemComponent;
 import com.github.dcysteine.neicustomdiagram.api.diagram.tooltip.Tooltip;
 import com.github.dcysteine.neicustomdiagram.main.Lang;
-import com.github.dcysteine.neicustomdiagram.util.GT_OreDictUnificator_WitchGetNoCopy;
 import com.google.common.base.Joiner;
 import com.google.common.collect.ImmutableList;
 import gregtech.api.util.GT_OreDictUnificator;
@@ -53,7 +52,7 @@ public final class GregTechRecipeUtil {
         for (Component component : inputs) {
             switch (component.type()) {
                 case ITEM:
-                    inputItems.add(GT_OreDictUnificator_WitchGetNoCopy.get_nocopy((ItemStack) component.stack()));
+                    inputItems.add(GT_OreDictUnificator.get_nocopy((ItemStack) component.stack()));
                     break;
 
                 case FLUID:
@@ -67,7 +66,7 @@ public final class GregTechRecipeUtil {
         for (Component component : outputs) {
             switch (component.type()) {
                 case ITEM:
-                    outputItems.add(GT_OreDictUnificator_WitchGetNoCopy.get_nocopy((ItemStack) component.stack()));
+                    outputItems.add(GT_OreDictUnificator.get_nocopy((ItemStack) component.stack()));
                     break;
 
                 case FLUID:
@@ -103,7 +102,7 @@ public final class GregTechRecipeUtil {
             ItemStack[] recipeItemStacks, Collection<ItemStack> itemStacks) {
         for (ItemStack itemStack : itemStacks) {
             if (Arrays.stream(recipeItemStacks)
-                    .noneMatch(s -> GT_OreDictUnificator_WitchGetNoCopy.isInputStackEqual(s, itemStack))) {
+                    .noneMatch(s -> GT_OreDictUnificator.isInputStackEqual(s, itemStack))) {
                 return false;
             }
         }
