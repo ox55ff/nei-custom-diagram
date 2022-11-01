@@ -186,7 +186,12 @@ class RecipeHandler {
             Logger.GREGTECH_5_ORE_PROCESSING.warn(
                     "Found {} recipes: [{}] [{}]", outputs.size(), recipeMap, input);
 
-            return Optional.empty();
+            ImmutableList<DisplayComponent> best = outputs.stream().max((o1, o2) -> {
+                return Integer.compare(o1.size(), o2.size());
+            }).get();
+
+            outputs.clear();
+            outputs.add(best);
         } else if (outputs.isEmpty()) {
             return Optional.empty();
         }
