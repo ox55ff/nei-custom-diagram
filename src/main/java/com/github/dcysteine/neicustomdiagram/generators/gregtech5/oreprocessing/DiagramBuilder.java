@@ -22,14 +22,9 @@ import com.google.common.collect.SetMultimap;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GT_OreDictUnificator;
+import gregtech.common.items.GT_FluidDisplayItem;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -99,9 +94,7 @@ class DiagramBuilder {
 
         Optional<ItemComponent> purifiedOreOptional =
                 crushedOreOptional.flatMap(
-                        crushedOre -> handleRecipes(
-                                RecipeHandler.RecipeMap.ORE_WASHING_PLANT, crushedOre,
-                                LayoutHandler.SlotGroupKeys.CRUSHED_ORE_WASH));
+                        crushedOre -> handleWashingRecipes(crushedOre));
 
         Optional<ItemComponent> purifiedDustOptional =
                 purifiedOreOptional.flatMap(
@@ -287,6 +280,46 @@ class DiagramBuilder {
         }
 
         return getFirstOutput(outputs, input, key);
+    }
+
+    private Optional<ItemComponent> handleWashingRecipes(ItemComponent input) {
+        Set<ImmutableList<DisplayComponent>> outputsOptional =
+                recipeHandler.getRecipeOutputs(RecipeHandler.RecipeMap.ORE_WASHING_PLANT, input);
+
+        // Skip recipe witch dirty and muddy water (GT_FluidDisplayItem)
+        Optional<ImmutableList<DisplayComponent>> recipe = outputsOptional.stream().filter(v -> {
+                    return v.stream().noneMatch(d -> {
+                        if (d.component() instanceof ItemComponent) {
+                            ItemComponent itemComponent = (ItemComponent) d.component();
+                            return itemComponent.item() instanceof GT_FluidDisplayItem;
+                        }
+
+                        return false;
+                    });
+                })
+                .max(Comparator.comparingInt(AbstractCollection::size));
+
+        if (!recipe.isPresent()) {
+            return Optional.empty();
+        }
+
+        List<DisplayComponent> outputs = new ArrayList<>(recipe.get());
+        ComponentTransformer.removeComponent(outputs, STONE_DUST);
+        if (outputs.size() == 0) {
+            Logger.GREGTECH_5_ORE_PROCESSING.warn(
+                    "Found no recipe outputs: [{}] [{}]", LayoutHandler.SlotGroupKeys.CRUSHED_ORE_WASH, input);
+
+            return Optional.empty();
+        }
+        diagramBuilder.autoInsertIntoSlotGroup(LayoutHandler.SlotGroupKeys.CRUSHED_ORE_WASH).insertEachSafe(outputs);
+
+        usageComponents.addAll(GregTechOreDictUtil.getAssociatedComponents(input));
+        for (DisplayComponent output : outputs) {
+            craftingComponents.addAll(
+                    GregTechOreDictUtil.getAssociatedComponents(output.component()));
+        }
+
+        return getFirstOutput(outputs, input, LayoutHandler.SlotGroupKeys.CRUSHED_ORE_WASH);
     }
 
     /**
